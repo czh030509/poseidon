@@ -1,2 +1,2 @@
 # springMvcDemo
-mavan + spring mvc + velocity 标准模板
+maven + spring mvc + velocity 标准模板
