@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jQuery Grid Column Template</title>
+    <meta charset="utf-8"/>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="http://code.gijgo.com/1.0.0/js/gijgo.js" type="text/javascript"></script>
+    <link href="http://code.gijgo.com/1.0.0/css/gijgo.css" rel="stylesheet" type="text/css"/>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"
+          type="text/css"/>
+    <style type="text/css">
+        .col-xs-12 {
+            float: none;
+            width: 60%;
+            margin: 0 auto;
+        }
+
+        .text-content {
+            width: auto;
+            margin-left: 20.3%;
+            margin-top: 3%;
+        }
+    </style>
+</head>
+
+<body>
+<div class="text-content">
+    <input id="symbol" type="text" placeholder="SZ000001"/>
+    <button id="generate-qjb" type="submit">Generate全景表</button>
+    <div>
+        <label id="companyName"></label>
+    </div>
+</div>
+
+<div class="container-full">
+    <div class="row">
+        <div class="col-xs-12">
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#generate-qjb').click(function () {
+            var symbol = $('#symbol').val();
+
+            if (!symbol) {
+                alert('Symbol不能为空！');
+            } else {
+                var companyName = "";
+                var getCompanyInfoUrl = '/api/getInfos/getCompanyInfo/' + symbol;
+
+                $.ajax({
+                    url: getCompanyInfoUrl,
+                    type: "get",
+                    dataType: "json",
+                    success: function (msg) {
+                        if (msg.tqCompInfo) {
+                            companyName = msg.tqCompInfo.compsname;
+
+                            if (companyName) {
+                                $("#companyName").html(companyName);
+                                var url = '/api/getInfos/getQuanjingbiaoItems/' + symbol;
+
+                                $('.col-xs-12').empty();
+                                $('.col-xs-12').append('<table id="grid"></table>');
+
+                                $('#grid').grid({
+                                    dataSource: url,
+                                    uiLibrary: 'bootstrap',
+                                    columns: [
+                                        {title: '年份', field: 'reportdate'},
+                                        {title: '营业收入(亿)', field: 'mainbusiincome'},
+                                        {title: '同比增长(%)', field: 'mainbusiincomeRate'},
+                                        {title: '净利润(亿)', field: 'netprofit'},
+                                        {title: '同比增长(%)', field: 'netprofitRate'},
+                                        {title: '经营现金流净额(亿)', field: 'operrevenue'},
+                                        {title: '股东权益(亿)', field: 'totsharequi'},
+                                        {title: '销售毛利率(%)', field: 'salegrossprofitrto'},
+                                        {title: '销售净利率(%)', field: 'salenetprofitrto'},
+                                        {title: 'ROE(%)', field: 'weightedroe'},
+                                    ]
+                                });
+                            }
+                        } else {
+                            alert('代码查询公司失败，请前缀SZ 或 SH，以及代码正确！');
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-package com.zaihua; /**
+package com.zaihua.controller; /**
  * @author : zaihua.chen
  * @version : 1.0.0
  * @since : 2016/7/1 11:46

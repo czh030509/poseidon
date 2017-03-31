@@ -616,6 +616,29 @@ public class HttpClientUtils {
         return null;
     }
 
+    public static String getWithHeader(String url, Map<String, String> headers) {
+        String content = null;
+        HttpGet get = new HttpGet(url);
+
+        try {
+            //添加header
+            if (headers != null && !headers.isEmpty()) {
+                for (Entry<String, String> entry : headers.entrySet()) {
+                    get.addHeader(entry.getKey(), entry.getValue());
+                }
+            }
+
+            HttpResponse response = HttpClientUtils.client.execute(get);
+            content = EntityUtils.toString(response.getEntity());
+        } catch (SocketTimeoutException e) {
+            logger.error("error when get " + e);
+        } catch (Exception e) {
+            HttpClientUtils.logger.error(String.format("get [%s] happens error ", url), e);
+        }
+
+        return content;
+    }
+
     private HttpClientUtils() {
     }
 }
