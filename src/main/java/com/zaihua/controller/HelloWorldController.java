@@ -4,6 +4,9 @@ package com.zaihua.controller; /**
  * @since : 2016/7/1 11:46
  */
 
+import com.zaihua.dao.entity.KDay;
+import com.zaihua.dao.entity.KDayDao;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;

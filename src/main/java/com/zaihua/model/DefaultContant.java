@@ -6,7 +6,7 @@ import org.apache.commons.lang.StringUtils;
 
 
 public final class DefaultContant {
-    private static String fileName = "default.properties";
+    private static String fileName = "local/default.properties";
 
     private static String xq_user = PropertyUtils.getValue("xq_user", fileName);
     private static String xq_psw = PropertyUtils.getValue("xq_psw", fileName);

@@ -24,3 +24,5 @@ CREATE TABLE k_day
 CREATE INDEX index_symbol ON k_day (symbol);
 CREATE INDEX index_time ON k_day (time);
 CREATE UNIQUE INDEX index_symbol_time ON k_day (symbol,time);
+
+

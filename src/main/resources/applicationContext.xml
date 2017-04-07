@@ -24,4 +24,7 @@
 
     <!-- 默认的注解映射的支持 -->
     <context:annotation-config />
+
+    <!-- 加载所有的spring配置 -->
+    <import resource="classpath*:spring/spring-*.xml"/>
 </beans>
