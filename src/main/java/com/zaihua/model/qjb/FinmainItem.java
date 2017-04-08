@@ -1,4 +1,4 @@
-package com.zaihua.model;
+package com.zaihua.model.qjb;
 
 /**
  * @author : zaihua.chen

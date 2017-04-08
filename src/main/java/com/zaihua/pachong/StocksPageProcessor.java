@@ -27,8 +27,8 @@ public class StocksPageProcessor implements PageProcessor {
             Elements ul1 = ele.select("ul").first().select("li");
             Elements ul2 = ele.select("ul").last().select("li");
 
-            DFCFJob.szs.clear();
-            DFCFJob.shs.clear();
+            StocksListService.szs.clear();
+            StocksListService.shs.clear();
 
             //sh
             for(Element element : ul1) {
@@ -41,7 +41,7 @@ public class StocksPageProcessor implements PageProcessor {
                 String num = code.replace("sh", "");
 
                 if (num.startsWith("6")) {
-                    DFCFJob.shs.put(code, text);
+                    StocksListService.shs.put(code, text);
                 }
             }
 
@@ -56,7 +56,7 @@ public class StocksPageProcessor implements PageProcessor {
                 String num = code.replace("sz", "");
 
                 if ((num.startsWith("0") && !num.startsWith("03")) || num.startsWith("3")) {
-                    DFCFJob.szs.put(code, text);
+                    StocksListService.szs.put(code, text);
                 }
             }
 

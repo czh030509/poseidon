@@ -16,7 +16,7 @@ import java.util.Map;
  * @since : 2016/12/1 19:46
  */
 @Service
-public class DFCFJob {
+public class StocksListService {
     @Autowired
     private StocksInfoDao stocksInfoDao;
 

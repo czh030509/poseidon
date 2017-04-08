@@ -1,8 +1,6 @@
 package com.zaihua.controller;
 
-import com.zaihua.model.stock.Stocks;
-import com.zaihua.pachong.DFCFJob;
-import com.zaihua.service.KDayService;
+import com.zaihua.pachong.StocksListService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,12 +15,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 public class StocksListController {
     @Autowired
-    private DFCFJob dfcfJob;
+    private StocksListService stocksListService;
 
     @ResponseBody
     @RequestMapping(value = "/updateStocksList")
     public String updateStocks() throws Exception {
-        dfcfJob.updateStocksList();
+        stocksListService.updateStocksList();
 
         return "success";
     }

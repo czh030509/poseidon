@@ -1,6 +1,7 @@
 package com.zaihua.service;
 
 import com.zaihua.model.*;
+import com.zaihua.model.qjb.*;
 import com.zaihua.utils.base.JacksonUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;

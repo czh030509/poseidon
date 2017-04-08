@@ -1,4 +1,4 @@
-package com.zaihua.model;
+package com.zaihua.model.qjb;
 
 import java.util.ArrayList;
 import java.util.List;
