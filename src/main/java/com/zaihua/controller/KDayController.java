@@ -1,16 +1,14 @@
 package com.zaihua.controller;
 
-import com.zaihua.model.*;
 import com.zaihua.model.stock.Stocks;
-import com.zaihua.service.QuanjingbiaoService;
-import com.zaihua.service.UpdateInfoService;
+import com.zaihua.service.KDayService;
+import com.zaihua.utils.base.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import java.util.Date;
 
 /**
  * @author : zaihua.chen
@@ -21,13 +19,13 @@ import java.util.List;
 @RequestMapping("/api/k_day")
 public class KDayController {
     @Autowired
-    private UpdateInfoService updateInfoService;
+    private KDayService kDayService;
 
     @ResponseBody
     @RequestMapping(value = "/getKdays")
     public Stocks getQuanjingbiaoItems(String symbol, String begin, String end) throws Exception {
         Stocks stocks = null;
-        stocks = updateInfoService.getStocklist(symbol, begin, end);
+        stocks = kDayService.getStocks(symbol, begin, end);
 
         if (stocks != null) {
             return stocks;
@@ -35,4 +33,6 @@ public class KDayController {
 
         return null;
     }
+
+
 }

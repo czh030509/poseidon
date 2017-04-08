@@ -1,143 +1,145 @@
 package com.zaihua.model.stock;
 
+import java.math.BigInteger;
+
 /**
  * Created by carl on 28/03/2017.
  */
 public class CharItem {
-    private String volume;      //成交量
-    private String open;        //开盘价
-    private String high;        //最高价
-    private String close;       //收盘价
-    private String low;         //最低价
-    private String chg;         //涨跌额
-    private String percent;     //涨跌幅
-    private String turnrate;    //换手率
-    private String ma5;
-    private String ma10;
-    private String ma20;
-    private String ma30;
-    private String dif;
-    private String dea;
-    private String macd;
+    private Long volume;      //成交量
+    private double open;        //开盘价
+    private double high;        //最高价
+    private double close;       //收盘价
+    private double low;         //最低价
+    private double chg;         //涨跌额
+    private double percent;     //涨跌幅
+    private double turnrate;    //换手率
+    private double ma5;
+    private double ma10;
+    private double ma20;
+    private double ma30;
+    private double dif;
+    private double dea;
+    private double macd;
     private String time;
 
-    public String getVolume() {
+    public Long getVolume() {
         return volume;
     }
 
-    public void setVolume(String volume) {
+    public void setVolume(Long volume) {
         this.volume = volume;
     }
 
-    public String getOpen() {
+    public double getOpen() {
         return open;
     }
 
-    public void setOpen(String open) {
+    public void setOpen(double open) {
         this.open = open;
     }
 
-    public String getHigh() {
+    public double getHigh() {
         return high;
     }
 
-    public void setHigh(String high) {
+    public void setHigh(double high) {
         this.high = high;
     }
 
-    public String getClose() {
+    public double getClose() {
         return close;
     }
 
-    public void setClose(String close) {
+    public void setClose(double close) {
         this.close = close;
     }
 
-    public String getLow() {
+    public double getLow() {
         return low;
     }
 
-    public void setLow(String low) {
+    public void setLow(double low) {
         this.low = low;
     }
 
-    public String getChg() {
+    public double getChg() {
         return chg;
     }
 
-    public void setChg(String chg) {
+    public void setChg(double chg) {
         this.chg = chg;
     }
 
-    public String getPercent() {
+    public double getPercent() {
         return percent;
     }
 
-    public void setPercent(String percent) {
+    public void setPercent(double percent) {
         this.percent = percent;
     }
 
-    public String getTurnrate() {
+    public double getTurnrate() {
         return turnrate;
     }
 
-    public void setTurnrate(String turnrate) {
+    public void setTurnrate(double turnrate) {
         this.turnrate = turnrate;
     }
 
-    public String getMa5() {
+    public double getMa5() {
         return ma5;
     }
 
-    public void setMa5(String ma5) {
+    public void setMa5(double ma5) {
         this.ma5 = ma5;
     }
 
-    public String getMa10() {
+    public double getMa10() {
         return ma10;
     }
 
-    public void setMa10(String ma10) {
+    public void setMa10(double ma10) {
         this.ma10 = ma10;
     }
 
-    public String getMa20() {
+    public double getMa20() {
         return ma20;
     }
 
-    public void setMa20(String ma20) {
+    public void setMa20(double ma20) {
         this.ma20 = ma20;
     }
 
-    public String getMa30() {
+    public double getMa30() {
         return ma30;
     }
 
-    public void setMa30(String ma30) {
+    public void setMa30(double ma30) {
         this.ma30 = ma30;
     }
 
-    public String getDif() {
+    public double getDif() {
         return dif;
     }
 
-    public void setDif(String dif) {
+    public void setDif(double dif) {
         this.dif = dif;
     }
 
-    public String getDea() {
+    public double getDea() {
         return dea;
     }
 
-    public void setDea(String dea) {
+    public void setDea(double dea) {
         this.dea = dea;
     }
 
-    public String getMacd() {
+    public double getMacd() {
         return macd;
     }
 
-    public void setMacd(String macd) {
+    public void setMacd(double macd) {
         this.macd = macd;
     }
 
@@ -148,5 +150,4 @@ public class CharItem {
     public void setTime(String time) {
         this.time = time;
     }
-
 }

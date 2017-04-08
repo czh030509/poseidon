@@ -5,10 +5,14 @@ package com.zaihua.service; /**
  */
 
 import com.google.common.collect.Maps;
+import com.zaihua.utils.base.DateUtils;
 import com.zaihua.utils.base.HttpClientUtils;
 import com.zaihua.utils.base.Md5Utils;
 import org.apache.http.Header;
 import org.apache.http.HttpResponse;
+
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.Map;
 
 public class XQUrlLib {
@@ -101,10 +105,12 @@ public class XQUrlLib {
     }
 
     public static void main(String[] args) throws InterruptedException {
-        String cookie = login("18611127212", "123456czh");
+ /*       String cookie = login("18611127212", "123456czh");
         System.out.println(cookie);
 
         String res = getStocklist("SH600036", cookie,"1459059584314","1490595584314");
-        System.out.println(res);
+        System.out.println(res);*/
+
+
     }
 }
