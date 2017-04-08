@@ -34,5 +34,12 @@ public class KDayController {
         return null;
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/updateStocks")
+    public String updateStocks(String symbol) throws Exception {
+        kDayService.updateStocks(symbol);
+
+        return "success";
+    }
 
 }

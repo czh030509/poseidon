@@ -22,4 +22,6 @@ public class MainController {
         model.addAttribute("code", code);
         return "companies";
     }
+
+
 }

@@ -24,3 +24,18 @@ CREATE TABLE k_day
 CREATE INDEX index_symbol ON k_day (symbol);
 CREATE INDEX index_time ON k_day (time);
 CREATE UNIQUE INDEX index_symbol_time ON k_day (symbol,time);
+
+
+
+
+CREATE TABLE stocks_info
+(
+    id SERIAL PRIMARY KEY,
+    type CHARACTER VARYING(4) NOT NULL,
+    symbol CHARACTER VARYING(20) NOT NULL,
+    name CHARACTER VARYING(20) NOT NULL,
+    operate int,
+    update_time timestamp NOT NULL ON UPDATE CURRENT_TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE UNIQUE INDEX index_symbol ON stocks_info (symbol);

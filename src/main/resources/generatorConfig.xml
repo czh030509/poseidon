@@ -24,6 +24,8 @@
             <property name="enableSubPackages" value="false" />
         </javaClientGenerator>
 
-        <table schema="public" tableName="k_day" domainObjectName="KDay" />
+        <!--<table schema="public" tableName="k_day" domainObjectName="KDay" />-->
+        <table schema="public" tableName="stocks_info" domainObjectName="StocksInfo" />
+
     </context>
 </generatorConfiguration>

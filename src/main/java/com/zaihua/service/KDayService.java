@@ -21,6 +21,8 @@ public class KDayService {
     @Autowired
     private KDayDao kDayDao;
 
+    private static String DefaultBeginTime = "2016-01-01";
+
     public Stocks getStocksByHttp(String symbol, String begin, String end) {
         Date bd  = DateUtils.convertDate(begin, DateUtils.DATE_PATTERN);
         Date ed  = DateUtils.convertDate(end, DateUtils.DATE_PATTERN);
@@ -39,8 +41,11 @@ public class KDayService {
         Stocks stocks = null;
 
         if(kDays == null || kDays.size() == 0) {
-            //没有，请求接口，并插入数据库
-            stocks =  getStocksByHttp(symbol, begin, end);
+            //没有，请求接口最新数据，并插入数据库
+            Date now = new Date();
+            end = DateUtils.formatDate(now, DateUtils.DATE_PATTERN);
+
+            stocks =  getStocksByHttp(symbol, DefaultBeginTime, end);
             kDayDao.insertKDays(stocks);
 
             List<KDay> newKDays = kDayDao.selectKDaysBySymbolAndTime(symbol, begin, end);
@@ -55,11 +60,13 @@ public class KDayService {
                 stocks = ConvertUtil.kDaysToStocks(kDays);
             } else {
                 //有，但是没有最新的，则请求db最新 到 end区间数据，插库，后再次查询，返回
-
                 dbTime = DateUtils.addDay(dbTime, 1);
                 time = DateUtils.formatDate(dbTime, DateUtils.DATE_PATTERN);
 
-                Stocks newStocks = getStocksByHttp(symbol, time, end);
+                Date nowDate = new Date();
+                String now  = DateUtils.formatDate(nowDate, DateUtils.DATE_PATTERN);
+
+                Stocks newStocks = getStocksByHttp(symbol, time, now);
                 kDayDao.insertKDays(newStocks);
 
                 List<KDay> newKDays = kDayDao.selectKDaysBySymbolAndTime(symbol, begin, end);
@@ -72,8 +79,39 @@ public class KDayService {
     }
 
 
-    public static void main(String[] args) throws InterruptedException {
+    //更新数据，从DefaultBeginTime 到 当前
+    public void updateStocks(String symbol) {
+        String begin = DefaultBeginTime;
 
+        Date now = new Date();
+        String end = DateUtils.formatDate(now, DateUtils.DATE_PATTERN);
+
+        List<KDay> kDays = kDayDao.selectKDaysBySymbolAndTime(symbol, begin, end);
+        Stocks stocks = null;
+
+        if(kDays == null || kDays.size() == 0) {
+            //没有，请求接口，并插入数据库
+            stocks =  getStocksByHttp(symbol, begin, end);
+            kDayDao.insertKDays(stocks);
+        }  else {
+            String time = kDays.get(0).getTime();
+            Date dbTime = DateUtils.convertDate(time, DateUtils.DATE_PATTERN);
+            Date reqTime = DateUtils.convertDate(end, DateUtils.DATE_PATTERN);
+
+            if(!dbTime.before(reqTime)) {
+                return;
+            } else {
+                //有，但是没有最新的，则请求db最新 到 now区间数据，插库
+                dbTime = DateUtils.addDay(dbTime, 1);
+                time = DateUtils.formatDate(dbTime, DateUtils.DATE_PATTERN);
+
+                Stocks newStocks = getStocksByHttp(symbol, time, end);
+                kDayDao.insertKDays(newStocks);
+            }
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
 
     }
 }
