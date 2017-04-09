@@ -1,4 +1,4 @@
-package com.zaihua.pachong;
+package com.zaihua.service.pachong;
 
 import com.google.common.collect.Maps;
 import com.zaihua.dao.entity.StocksInfo;

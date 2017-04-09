@@ -1,4 +1,4 @@
-package com.zaihua.pachong;
+package com.zaihua.service.pachong;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
