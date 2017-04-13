@@ -1,8 +1,10 @@
 package com.zaihua.service.pachong;
 
+import antlr.StringUtils;
 import com.google.common.collect.Maps;
 import com.zaihua.dao.entity.StocksInfo;
 import com.zaihua.dao.entity.StocksInfoDao;
+import org.jsoup.helper.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import us.codecraft.webmagic.Spider;
@@ -23,6 +25,7 @@ public class StocksListService {
     public static Map<String, String> shs = Maps.newHashMap();
     public static Map<String, String> szs = Maps.newHashMap();
 
+    //更新股票列表
     public void updateStocksList() {
         Spider.create(new StocksPageProcessor())
                 .addUrl("http://quote.eastmoney.com/stocklist.html")
@@ -30,9 +33,9 @@ public class StocksListService {
                 .run();
 
         for(Map.Entry<String, String> item : shs.entrySet()) {
-            List<StocksInfo> stocksInfoList = stocksInfoDao.selectStocksInfosBySymbol(item.getKey());
+            StocksInfo dbStocksInfo = stocksInfoDao.selectStocksInfosBySymbol(item.getKey());
 
-            if (stocksInfoList == null || stocksInfoList.size() == 0) {
+            if (dbStocksInfo == null) {
                 StocksInfo stocksInfo = new StocksInfo();
                 stocksInfo.setSymbol(item.getKey());
                 stocksInfo.setType("sh");
@@ -43,9 +46,9 @@ public class StocksListService {
         }
 
         for(Map.Entry<String, String> item : szs.entrySet()) {
-            List<StocksInfo> stocksInfoList = stocksInfoDao.selectStocksInfosBySymbol(item.getKey());
+            StocksInfo dbStocksInfo = stocksInfoDao.selectStocksInfosBySymbol(item.getKey());
 
-            if (stocksInfoList == null || stocksInfoList.size() == 0) {
+            if (dbStocksInfo == null) {
                 StocksInfo stocksInfo = new StocksInfo();
                 stocksInfo.setSymbol(item.getKey());
                 stocksInfo.setType("sz");
@@ -56,4 +59,21 @@ public class StocksListService {
         }
     }
 
+    public void editStocksInfo(List<StocksInfo> stocksInfoList) {
+        if (stocksInfoList == null || stocksInfoList.size() == 0) {
+            return;
+        }
+
+        for (StocksInfo item : stocksInfoList) {
+            stocksInfoDao.updateStocksInfo(item);
+        }
+    }
+
+    public List<StocksInfo> getStocksInfo(String type) {
+        if (StringUtil.isBlank(type)) {
+            return null;
+        }
+
+        return stocksInfoDao.selectStocksInfoByType(type);
+    }
 }

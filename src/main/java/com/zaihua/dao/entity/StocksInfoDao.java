@@ -14,11 +14,16 @@ public class StocksInfoDao {
     @Autowired
     private StocksInfoMapper stocksInfoMapper;
 
-    public List<StocksInfo> selectStocksInfosBySymbol(String symbol) {
+    public StocksInfo selectStocksInfosBySymbol(String symbol) {
         StocksInfoExample stocksInfoExample = new StocksInfoExample();
         stocksInfoExample.createCriteria().andSymbolEqualTo(symbol);
 
-        return stocksInfoMapper.selectByExample(stocksInfoExample);
+        List<StocksInfo> stocksInfoList = stocksInfoMapper.selectByExample(stocksInfoExample);
+        if (stocksInfoList == null || stocksInfoList.size() == 0) {
+            return null;
+        }
+
+        return stocksInfoList.get(0);
     }
 
     public List<StocksInfo> selectStocksInfoByType(String type) {
@@ -34,5 +39,18 @@ public class StocksInfoDao {
         }
 
         stocksInfoMapper.insert(stocksInfo);
+    }
+
+    public void updateStocksInfo(StocksInfo stocksInfo) {
+        if (stocksInfo == null) {
+            return;
+        }
+
+        if (selectStocksInfosBySymbol(stocksInfo.getSymbol()) != null) {
+            StocksInfoExample stocksInfoExample = new StocksInfoExample();
+            stocksInfoExample.createCriteria().andSymbolEqualTo(stocksInfo.getSymbol());
+
+            stocksInfoMapper.updateByExampleSelective(stocksInfo, stocksInfoExample);
+        }
     }
 }
