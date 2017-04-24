@@ -25,7 +25,7 @@
 
 <body>
 <div class="text-content">
-    <input id="symbol" type="text" placeholder="SZ000001"/>
+    <input id="symbol" type="text" placeholder="SZ000002"/>
     <button id="generate-qjb" type="submit">Generate全景表</button>
     <div>
         <label id="companyName"></label>
