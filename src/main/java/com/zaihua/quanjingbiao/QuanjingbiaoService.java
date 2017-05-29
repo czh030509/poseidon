@@ -35,6 +35,7 @@ public class QuanjingbiaoService {
             result = JacksonUtils.unmarshalFromString(res, CompanyInfo.class);
         }
 
+
         return result;
     }
 
