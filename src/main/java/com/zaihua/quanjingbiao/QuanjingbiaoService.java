@@ -1,4 +1,4 @@
-package com.zaihua.service;
+package com.zaihua.quanjingbiao;
 
 import com.zaihua.model.*;
 import com.zaihua.quanjingbiao.qjb.*;
