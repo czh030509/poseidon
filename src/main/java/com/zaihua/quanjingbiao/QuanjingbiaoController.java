@@ -1,7 +1,6 @@
-package com.zaihua.controller;
+package com.zaihua.quanjingbiao;
 
-import com.zaihua.model.qjb.*;
-import com.zaihua.service.QuanjingbiaoService;
+import com.zaihua.quanjingbiao.qjb.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -1,7 +1,8 @@
-package com.zaihua.service;
+package com.zaihua.quanjingbiao;
 
 import com.zaihua.model.*;
-import com.zaihua.model.qjb.*;
+import com.zaihua.quanjingbiao.qjb.*;
+import com.zaihua.service.XQUrlLib;
 import com.zaihua.utils.base.JacksonUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;

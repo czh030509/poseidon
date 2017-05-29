@@ -1,4 +1,4 @@
-package com.zaihua.controller;
+package com.zaihua.quanjingbiao;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
